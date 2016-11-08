@@ -31,23 +31,31 @@ public class MainActivity extends AppCompatActivity {
     public int getNumberOfCoffees() {
         return numberOfCoffees;
     }
+    public int getTotal(){
+        return (getNumberOfCoffees() * getNumberOfCoffees());
+    }
     //This increases the quantity and then updates the XML
     public void increaseQuantity(View view){
         this.quantity += 1;
+        String thatWill = "Amount Due: " + getTotal() + "\nThat will be" + getTotal();
         display(getQuantity());
+        displayMessage(thatWill);
     }
     //This decreases the quantity and then updates the XML
     public void decreaseQuantity(View view){
         this.quantity -= 1;
+        String thatWill = "Amount Due: " + getTotal() + "\nThat will be" + getTotal();
         display(getQuantity());
+        displayMessage(thatWill);
     }
 
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        String total = "Total: " + (getQuantity() * getNumberOfCoffees());
-        displayMessage(total);
+        String total = "Total: " + getTotal();
+        String ty = "Thank you!";
+        displayMessage(total + "\n" + ty);
     }
 
     /**
