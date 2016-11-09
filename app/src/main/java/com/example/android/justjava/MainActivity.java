@@ -16,7 +16,7 @@ import android.widget.TextView;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
-    private int quantity = 1;
+    private int quantity = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,18 +34,18 @@ public class MainActivity extends AppCompatActivity {
     //This increases the quantity and then updates the XML
     public void increaseQuantity(View view){
         this.quantity += 1;
-        display(getQuantity());
+        displayQuantity(getQuantity());
         thatWill(getTotal());
     }
     //This decreases the quantity and then updates the XML
     public void decreaseQuantity(View view){
         this.quantity -= 1;
-        display(getQuantity());
+        displayQuantity(getQuantity());
         thatWill(getTotal());
     }
     private void thatWill(int total){
-        String containerForText = "Amount Due: $" + total + "\nThat will be $" + total;
-        displayMessage(containerForText);
+        String containerForText = "Amount Due: ";
+        displayPrice(total, containerForText);
     }
 
     /**
@@ -60,13 +60,13 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void display(int number) {
+    private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
-    private void displayPrice(int number) {
+    private void displayPrice(int number, String message) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+        priceTextView.setText(message + NumberFormat.getCurrencyInstance().format(number));
     }
     /**
      * This method displays the given text on the screen.
