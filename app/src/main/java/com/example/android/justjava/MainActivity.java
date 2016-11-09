@@ -64,10 +64,14 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        createOrderSummary("Tommy Mertell", getQuantity(), isChecked());
+        createOrderSummary("Tommy Mertell", getQuantity(), hasCream(), hasCoacoa());
     }
-    public boolean isChecked(){
+    public boolean hasCream(){
         CheckBox checked = (CheckBox) findViewById(R.id.whipped_cream);
+        return checked.isChecked();
+    }
+    public boolean hasCoacoa(){
+        CheckBox checked = (CheckBox) findViewById(R.id.coacoa);
         return checked.isChecked();
     }
 
@@ -76,11 +80,12 @@ public class MainActivity extends AppCompatActivity {
      * @param name allows for different names to be utilized in the form of a String
      * @param quantity provides the amount of Cups of Coffee ordered
      */
-    private void createOrderSummary(String name, int quantity, Boolean hasWhippedCream){
+    private void createOrderSummary(String name, int quantity, Boolean hasCream, Boolean hasCoacoa){
         String total = "Total: $" + getTotal();
-        String creamCheck = "Does this have whipped cream? " + hasWhippedCream;
+        String creamCheck = "\nDoes this have Whipped Cream? " + hasCream;
+        String coacoaCheck = "\nDoes this have Chocolate? " + hasCoacoa + "\n";
         String ty = "Thank you!";
-        displayMessage("Name: " + name + "\n" + "Quantity: " + quantity + "\n" + creamCheck + "\n" + total + "\n" + ty) ;
+        displayMessage("Name: " + name + "\n" + "Quantity: " + quantity + creamCheck + coacoaCheck + total + "\n" + ty) ;
     }
 
     /**
