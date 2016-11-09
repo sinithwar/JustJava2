@@ -22,11 +22,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    //This method is for getting the class quantity
+
+    /**
+     * This method is for getting the class quantity
+     */
     private int getQuantity(){
         return quantity;
     }
-    //This method is for getting the price of each coffee
+
+    /**
+     * This method is for getting the price of each coffee
+     * @return returns the quantity multiplied by the price
+     */
     private int getTotal(){
         int coffeePrice = 2;
         return (getQuantity() * coffeePrice);
@@ -34,16 +41,20 @@ public class MainActivity extends AppCompatActivity {
     //This increases the quantity and then updates the XML
     public void increaseQuantity(View view){
         this.quantity += 1;
-        displayQuantity(getQuantity());
-        thatWill(getTotal());
+        quantityAndAmountDue(getTotal());
     }
     //This decreases the quantity and then updates the XML
     public void decreaseQuantity(View view){
         this.quantity -= 1;
-        displayQuantity(getQuantity());
-        thatWill(getTotal());
+        quantityAndAmountDue(getTotal());
     }
-    private void thatWill(int total){
+
+    /**
+     * quantityAndAmountDue handles the refreshing of the quantity and the overall price before the user presses on the checkout button
+     * @param total represents the total amount from multiplying the coffee price and quantity
+     */
+    private void quantityAndAmountDue(int total){
+        displayQuantity(getQuantity());
         String containerForText = "Amount Due: ";
         displayPrice(total, containerForText);
     }
@@ -64,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
+
+    /**
+     * This method displays a message once the consumer increase quantity
+     * @param number is the total combined cost of coffee and quantity
+     * @param message is a special message concatenate before the number
+     */
     private void displayPrice(int number, String message) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(message + NumberFormat.getCurrencyInstance().format(number));
