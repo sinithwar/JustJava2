@@ -16,44 +16,43 @@ import android.widget.TextView;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
-    private int quantity = 0;
-    private int numberOfCoffees = 2;
+    private int quantity = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
     //This method is for getting the class quantity
-    public int getQuantity(){
+    private int getQuantity(){
         return quantity;
     }
     //This method is for getting the price of each coffee
-    public int getNumberOfCoffees() {
-        return numberOfCoffees;
-    }
-    public int getTotal(){
-        return (getNumberOfCoffees() * getNumberOfCoffees());
+    private int getTotal(){
+        int coffeePrice = 2;
+        return (getQuantity() * coffeePrice);
     }
     //This increases the quantity and then updates the XML
     public void increaseQuantity(View view){
         this.quantity += 1;
-        String thatWill = "Amount Due: " + getTotal() + "\nThat will be" + getTotal();
         display(getQuantity());
-        displayMessage(thatWill);
+        thatWill(getTotal());
     }
     //This decreases the quantity and then updates the XML
     public void decreaseQuantity(View view){
         this.quantity -= 1;
-        String thatWill = "Amount Due: " + getTotal() + "\nThat will be" + getTotal();
         display(getQuantity());
-        displayMessage(thatWill);
+        thatWill(getTotal());
+    }
+    private void thatWill(int total){
+        String containerForText = "Amount Due: $" + total + "\nThat will be $" + total;
+        displayMessage(containerForText);
     }
 
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        String total = "Total: " + getTotal();
+        String total = "Total: $" + getTotal();
         String ty = "Thank you!";
         displayMessage(total + "\n" + ty);
     }
