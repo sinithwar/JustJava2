@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -64,21 +65,42 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        createOrderSummary("Tommy Mertell", getQuantity(), hasCream(), hasCoacoa());
+        createOrderSummary(getName(), getQuantity(), hasCream(), hasCoacoa());
     }
+
+    /**
+     * Checks whether the Whipped Cream checkbox has been checked
+     * @return returns a Boolean value
+     */
     public boolean hasCream(){
         CheckBox checked = (CheckBox) findViewById(R.id.whipped_cream);
         return checked.isChecked();
     }
+
+    /**
+     * Checks whether the Chocolate checkbox has been checked
+     * @return returns a Boolean value
+     */
     public boolean hasCoacoa(){
         CheckBox checked = (CheckBox) findViewById(R.id.coacoa);
         return checked.isChecked();
     }
 
     /**
+     * Gets the text within the Edit View
+     * @return returns the text supplied by the edit field via String
+     */
+    public String getName(){
+        EditText name = (EditText) findViewById(R.id.name);
+        return name.getText().toString();
+    }
+
+    /**
      * Creates an Order Summary with a Name, Amount Ordered, and the Price with a thank you
      * @param name allows for different names to be utilized in the form of a String
      * @param quantity provides the amount of Cups of Coffee ordered
+     * @param hasCream confirms whether the user has selected to have Whipped Cream
+     * @param hasCoacoa confirms whether the user has selected to have Chocolate
      */
     private void createOrderSummary(String name, int quantity, Boolean hasCream, Boolean hasCoacoa){
         String total = "Total: $" + getTotal();
