@@ -9,16 +9,20 @@ package com.example.android.justjava;
 import java.text.NumberFormat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
     private int quantity = 0;
+    private int creamPrice = 1;
+    private int coacoaPrice = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,19 @@ public class MainActivity extends AppCompatActivity {
      * This method is for getting the class quantity
      */
     private int getQuantity(){
+        if (quantity < 0){
+            quantity = 0;
+            String warning = "You cannot go below 0";
+            Toast toast = Toast.makeText(getApplicationContext(), warning, Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+        }else if (quantity > 100){
+            quantity = 100;
+            String warning = "You cannot go above 100";
+            Toast toast = Toast.makeText(getApplicationContext(), warning, Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+        }
         return quantity;
     }
 
@@ -38,7 +55,16 @@ public class MainActivity extends AppCompatActivity {
      */
     private int getTotal(){
         int coffeePrice = 5;
-        return (getQuantity() * coffeePrice);
+        if(hasCream() && hasCoacoa() == false){
+            return getQuantity() * (coffeePrice + creamPrice);
+        }else if (hasCoacoa() && hasCream() == false){
+            return getQuantity() * (coffeePrice + coacoaPrice);
+        }else if (hasCoacoa() && hasCream()){
+            return getQuantity() * (coffeePrice + creamPrice + coacoaPrice);
+        }else{
+            return (getQuantity() * coffeePrice);
+        }
+
     }
     //This increases the quantity and then updates the XML
     public void increaseQuantity(View view){
