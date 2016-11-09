@@ -10,6 +10,7 @@ import java.text.NumberFormat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 /**
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
      * @return returns the quantity multiplied by the price
      */
     private int getTotal(){
-        int coffeePrice = 2;
+        int coffeePrice = 5;
         return (getQuantity() * coffeePrice);
     }
     //This increases the quantity and then updates the XML
@@ -63,9 +64,23 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        createOrderSummary("Tommy Mertell", getQuantity(), isChecked());
+    }
+    public boolean isChecked(){
+        CheckBox checked = (CheckBox) findViewById(R.id.whipped_cream);
+        return checked.isChecked();
+    }
+
+    /**
+     * Creates an Order Summary with a Name, Amount Ordered, and the Price with a thank you
+     * @param name allows for different names to be utilized in the form of a String
+     * @param quantity provides the amount of Cups of Coffee ordered
+     */
+    private void createOrderSummary(String name, int quantity, Boolean hasWhippedCream){
         String total = "Total: $" + getTotal();
+        String creamCheck = "Does this have whipped cream? " + hasWhippedCream;
         String ty = "Thank you!";
-        displayMessage(total + "\n" + ty);
+        displayMessage("Name: " + name + "\n" + "Quantity: " + quantity + "\n" + creamCheck + "\n" + total + "\n" + ty) ;
     }
 
     /**

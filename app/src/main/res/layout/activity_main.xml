@@ -6,12 +6,29 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context="com.example.android.justjava.MainActivity">
-
     <TextView
-            android:padding="8dp"
-            android:layout_width="wrap_content"
-            android:text="Quantity"
             android:textSize="20sp"
+            android:padding="8dp"
+            android:text="Toppings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <CheckBox
+                android:id="@+id/whipped_cream"
+                android:text="Whipped Cream"
+                android:paddingLeft="24dp"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+        />
+    </LinearLayout>
+    <TextView
+            android:textSize="20sp"
+            android:padding="8dp"
+            android:text="Quantity"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAllCaps="true"
     />
@@ -49,7 +66,7 @@
     <TextView
             android:padding="8dp"
             android:layout_width="wrap_content"
-            android:text="Price"
+            android:text="Order Summery"
             android:textSize="20sp"
             android:layout_height="wrap_content"
             android:textAllCaps="true"
