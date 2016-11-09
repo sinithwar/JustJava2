@@ -17,12 +17,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
         />
+        <Button
+                android:id="@+id/mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Send This Order To a Friend"
+                android:onClick="sendMail"
+                android:layout_gravity="center_horizontal"/>
         <TextView
-                android:textSize="20sp"
+                style="@style/HeaderTextStyle"
                 android:padding="8dp"
                 android:text="Toppings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+        />
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -32,26 +38,19 @@
                     android:id="@+id/whipped_cream"
                     android:text="Whipped Cream"
                     android:paddingLeft="24dp"
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/HeaderTextStyle"
             />
             <CheckBox
                     android:id="@+id/coacoa"
                     android:text="Chocolate"
                     android:paddingLeft="24dp"
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/HeaderTextStyle"
             />
         </LinearLayout>
         <TextView
-                android:textSize="20sp"
                 android:padding="8dp"
                 android:text="Quantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAllCaps="true"
+                style="@style/HeaderTextStyle"
         />
         <LinearLayout
                 android:layout_width="match_parent"
@@ -86,11 +85,9 @@
 
         <TextView
                 android:padding="8dp"
-                android:layout_width="wrap_content"
+                style="@style/HeaderTextStyle"
                 android:text="Order Summery"
-                android:textSize="20sp"
-                android:layout_height="wrap_content"
-                android:textAllCaps="true"
+
         />
         <TextView
                 android:id="@+id/price_text_view"

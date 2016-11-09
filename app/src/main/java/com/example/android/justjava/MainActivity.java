@@ -7,6 +7,8 @@ package com.example.android.justjava;
  */
 
 import java.text.NumberFormat;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private int quantity = 0;
     private int creamPrice = 1;
     private int coacoaPrice = 2;
+    private String emailAttachment = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,7 +136,30 @@ public class MainActivity extends AppCompatActivity {
         String creamCheck = "\nDoes this have Whipped Cream? " + hasCream;
         String coacoaCheck = "\nDoes this have Chocolate? " + hasCoacoa + "\n";
         String ty = "Thank you!";
-        displayMessage("Name: " + name + "\n" + "Quantity: " + quantity + creamCheck + coacoaCheck + total + "\n" + ty) ;
+        String fullSentence = "Name: " + name + "\n" + "Quantity: " + quantity + creamCheck + coacoaCheck + total + "\n" + ty;
+        displayMessage(fullSentence);
+        emailAttachment = fullSentence;
+    }
+
+    public void sendMail(View view) {
+        if (emailAttachment != "") {
+            String subject = "Want to Have Some Coffee with Me?";
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("*/*");
+            intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+            intent.putExtra(Intent.EXTRA_TEXT, emailAttachment);
+            emailAttachment = "";
+            displayMessage(emailAttachment);
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            }
+        } else {
+            String warning = "You Must Make an Order";
+            Toast toast = Toast.makeText(getApplicationContext(), warning, Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+        }
+
     }
 
     /**
